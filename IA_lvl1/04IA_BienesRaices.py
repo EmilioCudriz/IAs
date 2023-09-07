@@ -91,18 +91,18 @@ sqft_lot = int(input("Area del lote (m^2): "))
 sqft_above = int(input("Area de la terraza (m^2): "))
 sqft_basement = int(input("Area del subterraneo/sotano (m^2): "))
 
-Set_prueba = [bedrooms, bathrooms, sqft_living, sqft_lot, floors, sqft_above, sqft_basement ]
+X_test_1 = np.array([[ bedrooms, bathrooms, sqft_living , sqft_lot, floors, sqft_above, sqft_basement]])
+
 
 scaler_1 = MinMaxScaler()
-Set_prueba_scaler = scaler_1.fit_transform(Set_prueba)
+X_test_scaled_1 = scaler_1.fit_transform(X_test_1)
 
-
-# Haciendo prediccion
-y_predict_1 = model.predict(Set_prueba_scaler)
+#Haciendo prediccion
+y_predict_1 = model.predict(X_test_scaled_1)
 y_predict_1 = scaler.inverse_transform(y_predict_1)
 
-print("El precio en dolares del inmueble es de: " + y_predict_1)
 
+print("El precio en dolares del inmueble es de: ",  y_predict_1.max())
 
 
 
